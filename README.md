@@ -1,12 +1,12 @@
-# Happy CNN
+# 😀 Happy CNN
 
 > Emotion Detection using Convolutional Neural Networks
 
-This repository contains very simple CNN Architecture for emotion detection. The model is trained on a dataset of happy and unhappy faces. 
+This repository contains very simple CNN Architecture for emotion detection. The model is trained on a dataset of happy and unhappy faces
 
 ## Table of Contents
 
-- [Happy CNN](#happy-cnn)
+- [😀 Happy CNN](#-happy-cnn)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Requirements](#requirements)
@@ -48,7 +48,7 @@ pip install torch h5py numpy pillow
 To train the "Happy CNN" model, use the following command:
 
 ```bash
-python your_script_name.py --train --epochs <number_of_epochs> --batch_size <batch_size>
+python model.py --train --epochs <number_of_epochs> --batch_size <batch_size>
 ```
 
 ### Testing
@@ -56,7 +56,7 @@ python your_script_name.py --train --epochs <number_of_epochs> --batch_size <bat
 To test the "Happy CNN" model, use the following command:
 
 ```bash
-python your_script_name.py --predict <path_to_image_file>
+python model.py --predict <path_to_image_file>
 ```
 
 ## Model Architecture
