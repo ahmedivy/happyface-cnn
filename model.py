@@ -48,7 +48,7 @@ def load_dataset():
     return train_x, train_y, test_x, test_y, classes
 
 
-def train(epochs = 20, batch_size = 32):
+def train(epochs=20, batch_size=32):
     # Load dataset
     train_x, train_y, test_x, test_y, _ = load_dataset()
 
@@ -56,11 +56,17 @@ def train(epochs = 20, batch_size = 32):
     train_x = train_x / 255.0
     test_x = test_x / 255.0
 
-    # Convert to tensor
+    # Convert to tensors
     train_x = torch.from_numpy(train_x).float()
     train_y = torch.from_numpy(train_y).float()
     test_x = torch.from_numpy(test_x).float()
     test_y = torch.from_numpy(test_y).float()
+
+    # Reshape
+    train_x = train_x.permute(0, 3, 1, 2)
+    test_x = test_x.permute(0, 3, 1, 2)
+    train_y = train_y.T
+    test_y = test_y.T
 
     # Create model
     model = HappyCNN()
@@ -74,17 +80,16 @@ def train(epochs = 20, batch_size = 32):
     # Train
     for epoch in range(epochs):
         for i in range(0, len(train_x), batch_size):
-            batch_x = train_x[i:i+batch_size]
-            batch_y = train_y[i:i+batch_size]
+            x_batch = train_x[i:i+batch_size]
+            y_batch = train_y[i:i+batch_size]
 
             optimizer.zero_grad()
-            y_pred = model(batch_x)
-            loss = criterion(y_pred, batch_y)
+            y_pred = model(x_batch)
+            loss = criterion(y_pred, y_batch)
             loss.backward()
             optimizer.step()
 
         print(f'Epoch: {epoch+1}, Loss: {loss.item():.3f}')
-
 
     # Save model
     torch.save(model.state_dict(), 'model/happy-cnn.pth')
@@ -108,13 +113,13 @@ def predict(img_path):
         pred = pred.squeeze()
         pred = pred.item()
         if pred > 0.5:
-            print('Happy')
+            print('Happy 😀')
         else:
-            print('Unhappy')
+            print('Unhappy 😞')
 
 
 if __name__ == '__main__':
-    
+
     parser = argparse.ArgumentParser(description='Happy CNN')
     parser.add_argument('--train', action='store_true', help='Train model')
     parser.add_argument('--predict', type=str, help='Predict image')
