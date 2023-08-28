@@ -2,7 +2,7 @@
 
 > Emotion Detection using Convolutional Neural Networks
 
-This repository contains very simple CNN Architecture for emotion detection. The model is trained on a dataset of happy and unhappy faces
+This repository contains very simple CNN Architecture for emotion detection. The model is trained on a dataset of happy and unhappy faces. This is the same model that is taught in the first week of CNN course in [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) on Coursera. In course they uses Keras but I have implemented the same model using PyTorch.
 
 ## Table of Contents
 
